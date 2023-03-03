@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=PT+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+  <!-- Bootstap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <!-- Iconos Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='/js/usuarios.js') }}"></script>
+  <!-- Titulo -->
+  <title>Kibo</title>
+</head>
+<body>
+    <!-- Barra de navegacion -->
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-collapse" id="navbar-toggler">
+                <a class="navbar-brand" href="{{url_for('mostrar_dashboard')}}">
+                    <img src="{{ url_for('static', filename='/img/logo_principal.svg') }}" width="100" alt="logo de la pagina web">
+                </a>
+                <ul class="navbar-nav d-flex justify-content-center align-items-center">
+                    <li class="navbar-item">{{usuario.nombre}}</li>
+                    <li class="navbar-item">
+                        <i class="bi bi-person-circle"></i>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-list"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{url_for('mostrar_historial')}}">Historial</a></li>
+                            {% if usuario.nivel_usuario_id == 1 %}
+                              <li><a class="dropdown-item" href="{{url_for('gestionar_usuarios')}}">Administrar Usuarios</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{{url_for('cerrar_sesion')}}">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="mensaje-2">
+        <h2>¡Warning!</h2>
+        <ul id="error">
+        </ul>
+        <button id="aceptar-2" class="botones">Aceptar</button>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="mensaje">
+                <h2>¡Warning!</h2>
+                <ul>
+                    {% for message in messages %}
+                        <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="row">
+            <section class="col-12 col-lg-6">
+                <h2 class="text-center mb-4">Registrar Empleado</h2>
+                <form action="" method="post" id="registro_empleado">
+                    <fieldset class="mb-3 row">
+                        <label for="nombre" class="col-sm-3 col-form-label">Nombre:</label>
+                        <div class="col-sm-9">
+                            {% if session["update"] == "si" %}
+                                <input type="text" class="form-control" name="nombre" id="nombre" value="{{empleado.nombre}}">
+                            {% else %}
+                                <input type="text" class="form-control" name="nombre" id="nombre">
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3 row">
+                        <label for="apellido" class="col-sm-3 col-form-label">Apellido:</label>
+                        <div class="col-sm-9">
+                            {% if session["update"] == "si" %}
+                                <input type="text" class="form-control" name="apellido" id="apellido" value="{{empleado.apellido}}">
+                            {% else %}
+                                <input type="text" class="form-control" name="apellido" id="apellido" >
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3 row">
+                        <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                        <div class="col-sm-9">
+                            {% if session["update"] == "si" %}
+                                <input type="text" class="form-control" name="email" id="email" value="{{empleado.email}}">
+                            {% else %}
+                                <input type="text" class="form-control" name="email" id="email" >
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3 row">
+                        <label for="celular" class="col-sm-3 col-form-label">Celular:</label>
+                        <div class="col-sm-9">
+                            {% if session["update"] == "si" %}
+                                <input type="text" class="form-control" name="celular" id="celular" value="{{empleado.celular}}">
+                            {% else %}
+                                <input type="text" class="form-control" name="celular" id="celular" >
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3 row">
+                        <label for="password" class="col-sm-3 col-form-label">Contraseña:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="password" id="password" >
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3 row d-flex align-items-center">
+                        <label for="re_password" class="col-sm-3 col-form-label">Confirmar contraseña:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="re_password" id="re_password" >
+                        </div>
+                    </fieldset>
+                    {% if session["update"] == "si" %}
+                        <input type="hidden" value="actualizar" name="accion">
+                        <button type="submit" value="actualizar" formaction="{{url_for('actualizar_empleado')}}" class="btn btn-outline-primary text-center opcion">Actualizar</button>
+                    {% else %}
+                        <input type="hidden" value="registrar" name="accion">
+                        <button type="submit" formaction="{{url_for('registrar_empleado')}}" class="btn btn-outline-primary text-center opcion">Registrar</button>
+                    {% endif %}
+                </form>
+            </section>
+            <section class="col-12 col-lg-6">
+                <h2 class="text-center mb-4">Empleados</h2>
+                <div class="container trabajos_contenedor">
+                    <div class="row text-center cabecera">
+                        <div class="col">Empleado</div>
+                        <div class="col">Modificar</div>
+                        <div class="col">Estado</div>
+                    </div>
+                    <div class="cuerpo_trabajos">
+                        {% for empleado in empleados %}
+                            <div class="row text-center trabajo">
+                                <a class="col text-start">{{empleado.nombre}} {{empleado.apellido}}</a>
+                                <form class="col" action="{{url_for('habilitar_edicion')}}" method="post">
+                                    <input type="hidden" name="empleado_id" value="{{empleado.id}}"> 
+                                    <input type="submit" class="actualizar" value="Actualizar">
+                                </form>
+                                <form class="col" action="{{url_for('modificar_estado')}}" method="post">
+                                    <input type="hidden" name="empleado_id" value="{{empleado.id}}">
+                                    <input type="hidden" name="estado" value="{{empleado.activo}}">
+                                    {% if empleado.activo == 1 %}
+                                        <input type="submit" class="actualizar" value="Deshabilitar">
+                                    {% else %}
+                                        <input type="submit" class="actualizar" value="Habilitar">
+                                    {% endif %}
+                                </form>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>    
+    </div>
+</body>
+</html>

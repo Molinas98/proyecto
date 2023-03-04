@@ -1,4 +1,4 @@
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   var myForm = document.getElementById('registro_empleado');
   myForm.onsubmit = function(e){
@@ -58,7 +58,12 @@ window.onload = function () {
             if (response.redirected) {
               window.location.assign(response.url)
             } else {
-              alert("Error")
+              response.json().then(data => {
+                etiquetaError.innerHTML = ""
+                etiquetaError.innerHTML += "<li>" + data.mensaje + "</li>"
+                var boxMensaje = document.querySelector(".mensaje-2")
+                boxMensaje.style.display = "flex"
+            });
             }
           })
         }else{
@@ -81,7 +86,7 @@ window.onload = function () {
 
   }
 
-};
+});
 
 
 function desaparecerboton(){

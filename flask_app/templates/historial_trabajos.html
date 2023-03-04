@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
   <!-- JavaScript -->
   <script src="{{ url_for('static', filename='/js/historial.js') }}"></script>
+  <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
   <!-- Titulo -->
   <title>Kibo</title>
 </head>
@@ -70,7 +71,7 @@
                 <input type="date" class="form-control" name="fecha_fin" id="fecha_fin">
             </div>
             <div class="col-12 col-md-2 col-lg-1">
-                <button type="submit" class="btn btn-primary buscar" >
+                <button type="submit" class="btn opcion" id="buscar">
                     <i class="bi bi-search"></i>
                 </button>
             </div>

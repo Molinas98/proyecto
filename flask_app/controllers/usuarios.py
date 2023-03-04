@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, request, redirect, session, flash
+from flask import render_template, request, redirect, session, flash, jsonify 
 from flask_bcrypt import Bcrypt
 from ..models.usuario import Usuario
 from ..models.trabajo import Trabajo
@@ -35,8 +35,7 @@ def mostrar_dashboard():
 def registrar_usuario():
     if request.method == 'POST':
         if not Usuario.validar_registro(request.form):
-            flash("El email ya está registrado")
-            return redirect('/')
+            return jsonify(mensaje ="El email ya está registrado")
         data = {
             "nombre":request.form['nombre'],
             "apellido" : request.form['apellido'],
@@ -54,8 +53,7 @@ def registrar_usuario():
 def registrar_empleado():
     if request.method == 'POST':
         if not Usuario.validar_registro(request.form):
-            flash("El email ya está registrado")
-            return redirect('/usuarios')
+            return jsonify(mensaje ="El email ya está registrado")
         data = {
             "nombre":request.form['nombre'],
             "apellido" : request.form['apellido'],

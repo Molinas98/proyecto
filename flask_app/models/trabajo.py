@@ -43,16 +43,6 @@ class Trabajo:
         return trabajos
     
     @classmethod
-    def get_filter_user(cls, data):
-        query = """SELECT * FROM trabajos WHERE LOWER(titulo) like LOWER(%(titulo)s) AND created_at  BETWEEN %(fecha_inicio)s AND 
-        DATE_ADD(%(fecha_fin)s, INTERVAL 1 DAY) AND usuario_id = %(id)s;"""
-        results = connectToMySQL('kibo').query_db(query, data)
-        trabajos = []
-        for row in results:
-            trabajos.append(cls(row))
-        return trabajos
-    
-    @classmethod
     def get_estados(cls, id, nivel):
         query = """SELECT trabajos.id, titulo, anterior.estado AS anterior, actual.estado AS actual from trabajos LEFT JOIN estados anterior ON 
         trabajos.estado_anterior_id = anterior.id LEFT JOIN estados actual ON trabajos.estado_id = actual.id LEFT JOIN trabajos_asignados
@@ -117,10 +107,6 @@ class Trabajo:
         }
         return connectToMySQL('kibo').query_db( query, data)
 
-    # @classmethod
-    # def delete(cls, data):
-    #     query = "DELETE FROM trabajos WHERE id = %(id)s;"
-    #     return connectToMySQL('kibo').query_db( query, data)
 
     @staticmethod
     def obtener_estado(id):

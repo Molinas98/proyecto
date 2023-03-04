@@ -52,23 +52,22 @@
         </div>
     </nav>
     <div class="mensaje-2">
-      <h2>¡Warning!</h2>
-      <ul id="error">
-      </ul>
+      <h2>¡Advertencia!</h2>
+      <ul id="error"></ul>
       <button id="aceptar-2" class="botones">Aceptar</button>
     </div>
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="mensaje">
-          <h2>¡Warning!</h2>
-          <ul>
+        {% if messages %}
+        <div class="mensaje">
+            <h2>¡Advertencia!</h2>
+            <ul>
             {% for message in messages %}
-              <li>{{message}}</li>
+                <li>{{message}}</li>s
             {% endfor %}
-          </ul>
-          <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
-      </div>
-      {% endif %}
+            </ul>
+            <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
+        </div>
+        {% endif %}
     {% endwith %}
     <div class="container">
       <div class="row">

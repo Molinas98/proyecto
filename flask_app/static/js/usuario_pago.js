@@ -1,4 +1,4 @@
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", () => {
 
       var anchoVentana = window.innerWidth
 
@@ -43,5 +43,4 @@ window.onload = function () {
           box_derecho.style.opacity = "1";
         }
       });
-};
-
+});

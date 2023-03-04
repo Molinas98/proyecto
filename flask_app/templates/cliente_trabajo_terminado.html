@@ -18,7 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
     <!-- JavaScript -->
-    <!-- <script src="{{ url_for('static', filename='/js/script.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
     <!-- Titulo -->
     <title>Kibo</title>
 </head>
@@ -47,15 +47,15 @@
             </div>
         </div>
     </nav>
-    <div class="container agradecimiento">
-        <h2>¡Gracias por la preferencia!</h2>
-        <img src="{{ url_for('static', filename='/img/agradecimiento.jpg') }}" class="img-fluid" alt="Agradecimiento">
+    <div class="container agradecimiento mb-5">
+        <h2>¡Ya puedes descargar tu trabajo!</h2>
+        <img src="{{ url_for('static', filename='/img/agradecimiento.png') }}" class="img-fluid" alt="Agradecimiento">
         {% if trabajo.tipo == "Digital" %}
-            <a download="documento" href="{{trabajo.documento}}">
-                <button class="btn btn-outline-primary text-center mb-5">Descargar</button>
+            <a class="container text-center" download="documento" href="{{trabajo.documento}}">
+                <button class="btn text-center opcion botones_unicos" id="botones_unicos" >Descargar</button>
             </a>
         {% else %}
-            <p class="aviso-pago mb-5">Puedes pasar por nuestro local para retirar el trabajo</p>
+            <p class="aviso-pago">Puedes pasar por nuestro local para retirar el trabajo</p>
         {% endif %}
     </div>
 </body>

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='/js/usuario_pago.js') }}"></script>
+    <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
     <!-- Titulo -->
     <title>Kibo</title>
 </head>
@@ -78,9 +79,9 @@
           </section>
           <p class="aviso-pago">Una vez realizado el depósito, la transferencia o el giro, enviar una foto o captura de pantalla del comprobante al siguiente número +595 985 530018 por medio de la aplicación WhatsApp.</p>
         {% if  trabajo.estado_id == 4%}
-          <form action="{{url_for('actualizar_estado')}}" method="post">
+          <form class="container mb-5" action="{{url_for('actualizar_estado')}}" method="post">
             <input hidden name="id" value="{{trabajo.id}}"> 
-            <button type="submit" name="proximo_estado" value="5" class="btn btn-outline-primary text-center mb-5 opcion" >Pago Realizado</button>
+            <button type="submit" name="proximo_estado" value="5" class="btn text-center opcion" id="botones_unicos" >Pago Realizado</button>
           </form>
         {% else %}
           <p class="mb-5 aviso-pago">Agradecemos tu pago. El trabajo se enviará en la brevedad posible.</p>

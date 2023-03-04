@@ -18,6 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
     <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='/js/imagen.js') }}"></script>
     <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
     <!-- Titulo -->
     <title>Kibo</title>
@@ -57,23 +58,17 @@
             <img src="{{trabajo.foto_detalles}}" alt="Imagen explicativa">
         </div>
     {% endif %}
-    <div class="mensaje-2">
-        <h2>¡Warning!</h2>
-        <ul id="error">
-        </ul>
-        <button id="aceptar-2" class="botones">Aceptar</button>
-    </div>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="mensaje">
-            <h2>¡Warning!</h2>
+        <div class="mensaje">
+            <h2>¡Advertencia!</h2>
             <ul>
             {% for message in messages %}
                 <li>{{message}}</li>
             {% endfor %}
             </ul>
             <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
-            </div>
+        </div>
         {% endif %}
     {% endwith %}
     <div class="container">
@@ -165,7 +160,7 @@
                     <fieldset class="mb-3 row">
                         <label for="trabajo_terminado" class="col-sm-3 col-form-label">Documento:</label>
                         <div class="col-sm-9">
-                            <a download="documento" href="{{trabajo.documento}}" class="btn btn-outline-primary text-center">
+                            <a download="documento" href="{{trabajo.documento}}" class="btn text-center opcion">
                                 Descargar
                             </a>
                         </div>
@@ -174,7 +169,7 @@
                     <input hidden name="id" value="{{trabajo.id}}"> 
                 </section>
             </div>
-            <div class="row text-center">
+            <div class="row text-center mt-2 mb-3">
                 {% if trabajo.estado_id == 1%}
                     <section class="col-12 col-sm-6">
                         <button type="submit" name="proximo_estado" value="2" formaction="{{url_for('completar_trabajo')}}" class="btn text-center opcion">Aceptar</button>
@@ -193,10 +188,10 @@
                                 <button type="submit" name="proximo_estado" value="6" formaction="{{url_for('enviar_trabajo')}}" class="btn text-center opcion" value="Finalizar">Finalizar</button>
                             </section>
                         {% else %}
-                            <button type="submit" name="proximo_estado" value="6" formaction="{{url_for('enviar_trabajo')}}" class="btn text-center opcion" value="Finalizar">Finalizar</button>
+                            <button type="submit" name="proximo_estado" value="6" formaction="{{url_for('enviar_trabajo')}}" class="btn text-center opcion" value="Finalizar" id="botones_unicos">Finalizar</button>
                         {% endif %}
                     {% else %}
-                            <button type="submit" name="proximo_estado" value="6" formaction="{{url_for('actualizar_estado')}}" class="btn text-center opcion" value="Finalizar">Finalizar</button>
+                            <button type="submit" name="proximo_estado" value="6" formaction="{{url_for('actualizar_estado')}}" class="btn text-center opcion" value="Finalizar" id="botones_unicos">Finalizar</button>
                     {% endif %}
                 {% endif %}
             </div>

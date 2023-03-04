@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
   <!-- JavaScript -->
   <script src="{{ url_for('static', filename='/js/usuarios.js') }}"></script>
+  <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
   <!-- Titulo -->
   <title>Kibo</title>
 </head>
@@ -52,22 +53,21 @@
         </div>
     </nav>
     <div class="mensaje-2">
-        <h2>¡Warning!</h2>
-        <ul id="error">
-        </ul>
+        <h2>¡Advertencia!</h2>
+        <ul id="error"></ul>
         <button id="aceptar-2" class="botones">Aceptar</button>
     </div>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="mensaje">
-                <h2>¡Warning!</h2>
-                <ul>
-                    {% for message in messages %}
-                        <li>{{message}}</li>
-                    {% endfor %}
-                </ul>
-                <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
-            </div>
+        <div class="mensaje">
+            <h2>¡Advertencia!</h2>
+            <ul>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+            <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
+        </div>
         {% endif %}
     {% endwith %}
     <div class="container">

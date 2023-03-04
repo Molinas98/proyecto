@@ -15,7 +15,6 @@ def mostrar_trabajo(id):
         session["update"] = "no"
         usuario = Usuario.get_por_id(session['id'])
         trabajo = Trabajo.get_one(id)
-        print(f"este es el estado: {trabajo.estado_id}")
         if usuario.nivel_usuario_id <= 2:
             if trabajo.estado_id == 7 or trabajo.estado_id == 8:
                 return render_template('trabajo_enviado.html', usuario = usuario, trabajo = trabajo)
@@ -35,7 +34,6 @@ def mostrar_trabajo(id):
                     "estado" : 9
                 }
                 Trabajo.update(data)
-                print("Aca entra por primera vez")
                 return render_template('cliente_trabajo_terminado.html', usuario = usuario, trabajo = trabajo)
             else:
                 return redirect("/dashboard")
@@ -70,8 +68,7 @@ def solicitar_trabajo():
             extension           = os.path.splitext(filename)[1]
             #validando la extension
             if not extension in EXTENSIONES_PERMITIDAS:
-                flash("Imagen no válida, las extensiones permitidas son .png, .jpg, .jpeg")
-                return redirect('/dashboard') 
+                return jsonify(mensaje ="Imagen no válida, las extensiones permitidas son .png, .jpg, .jpeg")
 
             nuevoNombreFile     = str(Trabajo.obtener_ultimo_id()) + extension
             upload_path = os.path.join (basepath, 'static\\files', nuevoNombreFile) 
@@ -133,6 +130,8 @@ def enviar_trabajo():
             return redirect("/trabajo/" + str(request.form["id"]))
         file = request.files['trabajo_terminado']
         basepath = os.path.dirname (__file__) #La ruta donde se encuentra el archivo actual
+        print("HOLLAAA")
+        print(type(basepath))
         #dividimos los diferentes carpetas
         carpetas = basepath.split("\\")
         #Al url base que termina en controllers le sustraemos la misma para retroceder una carpeta

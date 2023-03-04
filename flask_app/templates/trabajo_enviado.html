@@ -18,7 +18,8 @@
         <!-- CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
         <!-- JavaScript -->
-        <script src="{{ url_for('static', filename='/js/trabajos_completar.js') }}"></script>
+        <script src="{{ url_for('static', filename='/js/imagen.js') }}"></script>
+        <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
         <!-- Titulo -->
         <title>Kibo</title>
     </head>
@@ -42,7 +43,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{url_for('mostrar_historial')}}">Historial</a></li>
                                 {% if usuario.nivel_usuario_id == 1 %}
-                                  <li><a class="dropdown-item" href="{{url_for('gestionar_usuarios')}}">Administrar Usuarios</a></li>
+                                    <li><a class="dropdown-item" href="{{url_for('gestionar_usuarios')}}">Administrar Usuarios</a></li>
                                 {% endif %}
                                 <li><a class="dropdown-item" href="{{url_for('cerrar_sesion')}}">Cerrar Sesión</a></li>
                             </ul>
@@ -111,7 +112,7 @@
                 {% endif %}
                 <input hidden name="id" value="{{trabajo.id}}"> 
                 {% if trabajo.estado_id == 1 %}
-                    <div class="row text-center">
+                    <div class="row text-center mb-3">
                         <section class="col-12 col-sm-6">
                             <button type="submit" name="proximo_estado" value="7" formaction="{{url_for('actualizar_estado')}}" class="btn btn-outline-primary text-center opcion">Cancelar</button>
                         </section>

@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
         getData()
-    });
+});
 
 
 //codigo basado en esta pagina: https://www.sitepoint.com/delay-sleep-pause-wait/

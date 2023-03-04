@@ -18,30 +18,30 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/home-style.css') }}">
     <!-- JavaScript -->
-    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='/js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='/js/boton.js') }}"></script>
     <!-- Titulo -->
     <title>Kibo</title>
 </head>
 <body>
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="mensaje">
-          <h2>¡Warning!</h2>
-          <ul>
+        {% if messages %}
+        <div class="mensaje">
+            <h2>¡Advertencia!</h2>
+            <ul>
             {% for message in messages %}
-              <li>{{message}}</li>
+                <li>{{message}}</li>
             {% endfor %}
-          </ul>
-          <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
-      </div>
-      {% endif %}
+            </ul>
+            <button id="aceptar" onclick="desaparecerboton()" class="botones">Aceptar</button>
+        </div>
+        {% endif %}
     {% endwith %}
-  <div class="mensaje-2">
-    <h2>¡Warning!</h2>
-    <ul id="error">
-    </ul>
-    <button id="aceptar-2" class="botones">Aceptar</button>
-  </div>
+    <div class="mensaje-2">
+        <h2>¡Advertencia!</h2>
+        <ul id="error"></ul>
+        <button id="aceptar-2" class="botones">Aceptar</button>
+    </div>
     <div class="container">
         <div class="row">
             <img class="logo_principal" src="{{ url_for('static', filename='/img/logo_principal.svg') }}">
@@ -86,7 +86,7 @@
                             <input type="password" class="form-control" name="re_password" id="re_password" >
                         </div>
                     </fieldset>
-                    <input type="submit" class="btn btn-outline-primary text-center" value="Registarte" id="enviar">
+                    <button type="submit" class="btn text-center opcion" id="enviar">Registarte</button>
                 </form>
             </section>
             <section class="col-12 col-lg-6">
@@ -104,7 +104,7 @@
                             <input type="password" class="form-control" name="login_password" id="login_password" >
                         </div>
                     </fieldset>
-                    <input type="submit" class="btn btn-outline-primary text-center" value="Iniciar Sesión" id="login">
+                    <button type="submit" class="btn text-center opcion" id="login">Iniciar Sesión</button>
                 </form>
             </section>
         </div>    

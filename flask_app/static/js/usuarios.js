@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }else{
         //así es como configuramos una solicitud post y enviamos los datos del formulario
         if(form.get("accion") == "registrar"){
-          fetch("http://127.0.0.1:5000/process_empleado", { method :'POST', body : form})
+          fetch("/process_empleado", { method :'POST', body : form})
           .then(response => {
             if (response.redirected) {
               window.location.assign(response.url)
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           })
         }else{
-          fetch("http://127.0.0.1:5000/update_empleado", { method :'POST', body : form})
+          fetch("/update_empleado", { method :'POST', body : form})
           .then(response => {
             if (response.redirected) {
               window.location.assign(response.url)

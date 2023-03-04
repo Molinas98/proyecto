@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         count = 0
       }else{
         //así es como configuramos una solicitud post y enviamos los datos del formulario
-        fetch("http://127.0.0.1:5000/dashboard/process", { method :'POST', body : form})
+        fetch("/dashboard/process", { method :'POST', body : form})
         .then(response => {
           if (response.redirected) {
             window.location.assign(response.url)

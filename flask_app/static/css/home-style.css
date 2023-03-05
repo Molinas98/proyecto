@@ -398,7 +398,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus
     text-align: center;
 }
 
-.agradecimiento img{
+.imagen_gracias{
     margin: 30px 0;
     box-shadow: 0px 0px 8px 2px #1047EF;
 }

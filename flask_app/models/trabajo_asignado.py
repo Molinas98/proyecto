@@ -38,7 +38,6 @@ class Trabajo_asignado:
             }
             trabajo_asignado.trabajo = trabajo.Trabajo(trabajo_datos)
             trabajos.append(trabajo_asignado)
-            print(trabajos[0].trabajo.titulo)
         return trabajos
 
     @classmethod

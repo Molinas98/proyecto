@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         is_valid = false
       }
       if (!form.get("password").match(PASSWORD_REGEX)){
-        errores.push("La contraseña debe contener entre 5 y 30 letras: 1 carácter numérico, 1 letra mayúscula, 1 letra minuscula y un carácter especial.")
+        errores.push("La contraseña debe contener entre 5 y 30 letras: 1 caracter numérico, 1 letra mayúscula, 1 letra minúscula y un caracter especial.")
         is_valid = false
       }
       if (form.get('password') != form.get('re_password')){

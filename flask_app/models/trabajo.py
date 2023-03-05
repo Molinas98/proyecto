@@ -86,17 +86,17 @@ class Trabajo:
         
     @classmethod
     def update(cls, data):
-        query = "UPDATE trabajos SET estado_id = %(estado)s, estado_anterior_id = (SELECT estado_id FROM trabajos WHERE id = %(id)s) WHERE id = %(id)s;"
+        query = "UPDATE trabajos SET  estado_anterior_id = estado_id, estado_id = %(estado)s WHERE id = %(id)s;"
         return connectToMySQL('kibo').query_db( query, data)
     
     @classmethod
     def complete(cls, data):
-        query = "UPDATE trabajos SET precio = %(precio)s, comentario = %(comentario)s, estado_id = %(estado)s, estado_anterior_id = (SELECT estado_id FROM trabajos WHERE id = %(id)s)  WHERE id = %(id)s;"
+        query = "UPDATE trabajos SET precio = %(precio)s, comentario = %(comentario)s, estado_anterior_id = estado_id, estado_id = %(estado)s  WHERE id = %(id)s;"
         return connectToMySQL('kibo').query_db( query, data)
     
     @classmethod
     def send(cls, data):
-        query = "UPDATE trabajos SET documento = %(documento)s , estado_id = %(estado)s, estado_anterior_id = (SELECT estado_id FROM trabajos WHERE id = %(id)s)  WHERE id = %(id)s;"
+        query = "UPDATE trabajos SET documento = %(documento)s , estado_anterior_id = estado_id, estado_id = %(estado)s WHERE id = %(id)s;"
         return connectToMySQL('kibo').query_db( query, data)
     
     @classmethod

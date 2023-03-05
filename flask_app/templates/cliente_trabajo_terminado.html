@@ -49,7 +49,7 @@
     </nav>
     <div class="container agradecimiento mb-5">
         <h2>¡Ya puedes descargar tu trabajo!</h2>
-        <img src="{{ url_for('static', filename='/img/agradecimiento.png') }}" class="img-fluid" alt="Agradecimiento">
+        <img src="{{ url_for('static', filename='/img/agradecimiento.png') }}" class="img-fluid imagen_gracias" alt="Agradecimiento">
         {% if trabajo.tipo == "Digital" %}
             <a class="container text-center" download="documento" href="{{trabajo.documento}}">
                 <button class="btn text-center opcion botones_unicos" id="botones_unicos" >Descargar</button>

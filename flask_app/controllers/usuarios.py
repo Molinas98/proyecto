@@ -4,8 +4,6 @@ from flask_bcrypt import Bcrypt
 from ..models.usuario import Usuario
 from ..models.trabajo import Trabajo
 from ..models.trabajo_asignado import Trabajo_asignado
-from base64 import b64encode
-from PIL import Image
 
 bcrypt = Bcrypt(app)
 

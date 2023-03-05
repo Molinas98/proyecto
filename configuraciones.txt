@@ -1,0 +1,24 @@
+Servidor de AWS
+URL: http://3.237.173.94/
+
+Base de datos
+MYSQL
+usuario: root
+contraseña: ''
+Observación: la contraseña esta en blanco
+
+Usuarios Registrados
+Administrador
+email: tade25.molinas@gmail.com
+contraseña: Kibo2023+
+
+Cliente
+email: juan.caballero@gmail.com
+contraseña: Juan12+
+
+Empleado
+email: marcelo.aranda@gmail.com
+contraseña: Marcelo12+
+
+Librerias
+En el archivo requirements.txt se encuentran todas la librerias utilizadas

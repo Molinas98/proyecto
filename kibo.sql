@@ -94,7 +94,7 @@ CREATE TABLE `trabajos` (
   CONSTRAINT `fk_trabajos_estados1` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_trabajos_estados2` FOREIGN KEY (`estado_anterior_id`) REFERENCES `estados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_trabajos_usuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `trabajos` (
 
 LOCK TABLES `trabajos` WRITE;
 /*!40000 ALTER TABLE `trabajos` DISABLE KEYS */;
-INSERT INTO `trabajos` VALUES (1,'La gripe','Trabajo sobre la gripe','Digital','2023-03-25','/static/files/1.jpg','/static/files/trabajo_1.pdf',213123,'','2023-03-04 08:47:26','2023-03-04 08:47:26',4,3,1),(2,'El zika','La enfermedad del zika','Impreso','2023-03-04',NULL,NULL,13123,'','2023-03-04 08:58:44','2023-03-04 08:58:44',4,3,1),(3,'Probando estados','Esta es una prueba de todos los estados','Digital','2023-03-11','/static/files/3.png','/static/files/trabajo_3.jpg',132123312,'','2023-03-04 11:40:44','2023-03-04 11:40:44',4,5,4),(4,'probando 2','asdfadsfasdf','Digital','2023-03-24','/static/files/4.jpg',NULL,123132,'','2023-03-04 11:57:56','2023-03-04 11:57:56',4,3,1),(5,'asdfdsa','dfsdasfafds','Digital','2023-03-04','/static/files/5.jpg',NULL,1312132,'','2023-03-04 12:02:32','2023-03-04 12:02:32',4,3,1),(6,'sfdaasfdafds','afsdsadfasfdsafd','Digital','2023-03-04',NULL,NULL,NULL,NULL,'2023-03-04 16:55:15','2023-03-04 16:55:15',4,1,1),(7,'asdfasd','asdfadsfas','Digital','2023-03-04','/static/files/7.jpg',NULL,NULL,NULL,'2023-03-04 16:59:23','2023-03-04 16:59:23',4,1,1);
+INSERT INTO `trabajos` VALUES (1,'Hamburgueseada','Quiero 100 adhesiones con los datos de la foto, cambiar la fecha por 1 de abril','Impreso','2023-03-14','/static/files/1.jpeg',NULL,NULL,NULL,'2023-03-05 12:02:46','2023-03-05 12:02:46',4,1,1),(2,'Caratula','Quiero una caratula con la siguiente imagen.','Digital','2023-03-24','/static/files/2.jpeg','/static/files/trabajo_2.pdf',5000,'El trabajo estará listo mañana','2023-03-05 12:03:24','2023-03-05 12:03:24',4,9,9);
 /*!40000 ALTER TABLE `trabajos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `trabajos_asignados` (
   KEY `fk_trabajos_asignados_usuarios1_idx` (`empleado_id`),
   CONSTRAINT `fk_trabajos_asignados_trabajos1` FOREIGN KEY (`trabajo_id`) REFERENCES `trabajos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_trabajos_asignados_usuarios1` FOREIGN KEY (`empleado_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `trabajos_asignados` (
 
 LOCK TABLES `trabajos_asignados` WRITE;
 /*!40000 ALTER TABLE `trabajos_asignados` DISABLE KEYS */;
-INSERT INTO `trabajos_asignados` VALUES (1,1,1,'2023-03-04 08:48:02','2023-03-04 08:48:02'),(2,3,2,'2023-03-04 11:42:55','2023-03-04 11:42:55'),(3,4,3,'2023-03-04 11:58:26','2023-03-04 11:58:26'),(4,1,1,'2023-03-04 16:05:01','2023-03-04 16:05:01'),(5,2,1,'2023-03-04 16:05:06','2023-03-04 16:05:06'),(6,3,1,'2023-03-04 16:05:14','2023-03-04 16:05:14'),(7,4,1,'2023-03-04 16:05:18','2023-03-04 16:05:18'),(8,5,1,'2023-03-04 16:05:22','2023-03-04 16:05:22');
+INSERT INTO `trabajos_asignados` VALUES (1,2,1,'2023-03-05 12:03:42','2023-03-05 12:03:42');
 /*!40000 ALTER TABLE `trabajos_asignados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Tadeo','Molinas','tade25.molinas@gmail.com','$2b$12$sYzX77L8tCY2eg/.PUWTYe78gZeOXWfVEEo1wUu6Ipd0er.VOwVni','0992843527',1,'2023-02-27 16:54:02','2023-02-27 16:54:02',1),(2,'Javier','Paredez','javier.paredez@gmail.com','$2b$12$KbQqGYkv1k2ol6F9tZ0cL.blU3FP2sxBeVFgf8WLDp30Y2Bxipbj2','0992125432',1,'2023-02-27 16:54:30','2023-03-04 17:17:30',2),(3,'Marcelo','Aranda','marcelo.aranda@gmail.com','$2b$12$KCQLpUJTtk9q51Y7xP.YxeD8V7hKtCbnlVECeLCYgmKEeL23WLCzu','0981504323',1,'2023-02-27 16:55:02','2023-02-27 16:55:02',2),(4,'Juan','Caballero','juan.caballero@gmail.com','$2b$12$7DV5U61DEx05vqW6ssFt1uEnHCYUhJJR.ozrLP3nPtwUK9Aftu77y','0971453212',1,'2023-02-27 17:06:30','2023-02-27 17:06:30',3),(5,'María','Palacios','maria.palacios@gmail.com','$2b$12$NLuYvF9qdiVEQ0UjWpGxgO20wLckq6X6YQLh60voyFDgWm5xMTHiC','0975436534',1,'2023-03-01 11:45:49','2023-03-01 11:45:49',3),(6,'Lucas','Amarilla','lucas.amarilla@gmail.com','$2b$12$WsSJW3vwQorB2qUD3wAepeOT5KTf3BiwPOBEvTccZfErkHzc8/ppG','0994322315',1,'2023-03-04 16:52:06','2023-03-04 16:52:06',3);
+INSERT INTO `usuarios` VALUES (1,'Tadeo','Molinas','tade25.molinas@gmail.com','$2b$12$sYzX77L8tCY2eg/.PUWTYe78gZeOXWfVEEo1wUu6Ipd0er.VOwVni','0992843527',1,'2023-02-27 16:54:02','2023-02-27 16:54:02',1),(2,'Javiers','Paredez','javier.paredez@gmail.com','$2b$12$KbQqGYkv1k2ol6F9tZ0cL.blU3FP2sxBeVFgf8WLDp30Y2Bxipbj2','0992125432',1,'2023-02-27 16:54:30','2023-03-05 10:59:00',2),(3,'Marcelo','Aranda','marcelo.aranda@gmail.com','$2b$12$KCQLpUJTtk9q51Y7xP.YxeD8V7hKtCbnlVECeLCYgmKEeL23WLCzu','0981504323',1,'2023-02-27 16:55:02','2023-02-27 16:55:02',2),(4,'Juan','Caballero','juan.caballero@gmail.com','$2b$12$7DV5U61DEx05vqW6ssFt1uEnHCYUhJJR.ozrLP3nPtwUK9Aftu77y','0971453212',1,'2023-02-27 17:06:30','2023-02-27 17:06:30',3),(5,'María','Palacios','maria.palacios@gmail.com','$2b$12$NLuYvF9qdiVEQ0UjWpGxgO20wLckq6X6YQLh60voyFDgWm5xMTHiC','0975436534',1,'2023-03-01 11:45:49','2023-03-01 11:45:49',3),(6,'Lucas','Amarilla','lucas.amarilla@gmail.com','$2b$12$WsSJW3vwQorB2qUD3wAepeOT5KTf3BiwPOBEvTccZfErkHzc8/ppG','0994322315',1,'2023-03-04 16:52:06','2023-03-04 16:52:06',3);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -181,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-04 18:21:53
+-- Dump completed on 2023-03-05 12:10:09

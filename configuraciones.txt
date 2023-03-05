@@ -22,3 +22,9 @@ contraseña: Marcelo12+
 
 Librerias
 En el archivo requirements.txt se encuentran todas la librerias utilizadas
+
+Github:
+https://github.com/Molinas98/proyecto.git
+
+Observación:
+El navegador Chrome bloquea automáticamente las notificaciones de sitios no seguros por ello se recomienda utilizar Mozilla Firefox.

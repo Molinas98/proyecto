@@ -5,6 +5,7 @@ import os
 from ..models.usuario import Usuario
 from ..models.trabajo import Trabajo
 from ..models.trabajo_asignado import Trabajo_asignado
+from pathlib import Path
 
 
 @app.route('/trabajo/<int:id>', methods=['GET'])
@@ -57,21 +58,19 @@ def solicitar_trabajo():
             EXTENSIONES_PERMITIDAS = set([".png", ".jpg", ".jpeg"])
             file     = request.files['foto_detalles']
             basepath = os.path.dirname (__file__) #La ruta donde se encuentra el archivo actual
-            #dividimos los diferentes carpetas
-            carpetas = basepath.split("\\")
-            #Al url base que termina en controllers le sustraemos la misma para retroceder una carpeta
-            #Para eso tomamos en cuenta la longitud de la ultima carpeta y le restamos tambien el caracter de la barra inclinada
-            basepath = basepath[:(len(basepath)-len(carpetas[len(carpetas)-1])-1)]
+            direccion = Path(basepath)
+
             filename = secure_filename(file.filename) #Nombre original del archivo
             
             #capturando extension del archivo ejemplo: (.png, .jpg)
-            extension           = os.path.splitext(filename)[1]
+            extension = os.path.splitext(filename)[1]
             #validando la extension
             if not extension in EXTENSIONES_PERMITIDAS:
                 return jsonify(mensaje ="Imagen no válida, las extensiones permitidas son .png, .jpg, .jpeg")
 
             nuevoNombreFile     = str(Trabajo.obtener_ultimo_id()) + extension
-            upload_path = os.path.join (basepath, 'static\\files', nuevoNombreFile) 
+            #direccion.parents[0] retrocede una carpeta
+            upload_path = os.path.join (direccion.parents[0], 'static/files', nuevoNombreFile) 
             file.save(upload_path)
             path_database = f"/static/files/{nuevoNombreFile}"
 
@@ -130,19 +129,13 @@ def enviar_trabajo():
             return redirect("/trabajo/" + str(request.form["id"]))
         file = request.files['trabajo_terminado']
         basepath = os.path.dirname (__file__) #La ruta donde se encuentra el archivo actual
-        print("HOLLAAA")
-        print(type(basepath))
-        #dividimos los diferentes carpetas
-        carpetas = basepath.split("\\")
-        #Al url base que termina en controllers le sustraemos la misma para retroceder una carpeta
-        #Para eso tomamos en cuenta la longitud de la ultima carpeta y le restamos tambien el caracter de la barra inclinada
-        basepath = basepath[:(len(basepath)-len(carpetas[len(carpetas)-1])-1)]
+        direccion = Path(basepath)
         filename = secure_filename(file.filename) #Nombre original del archivo
         #capturando extension del archivo ejemplo: (.png, .jpg)
         extension = os.path.splitext(filename)[1]
 
         nuevoNombreFile     = "trabajo_" + str(request.form["id"]) + extension
-        upload_path = os.path.join (basepath, 'static\\files', nuevoNombreFile) 
+        upload_path = os.path.join (direccion.parents[0], 'static/files', nuevoNombreFile) 
         file.save(upload_path)
         path_database = f"/static/files/{nuevoNombreFile}"
         data = {
